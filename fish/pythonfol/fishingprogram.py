@@ -39,7 +39,7 @@ def solve_minigame():
             # Lowered from 10,000 to 2,000 because 1080p has fewer pixels
             if dark_pixel_count > 2000: 
                 if not is_fishing:
-                    print(f">>> Bar Detected ({dark_pixel_count} px). Waiting 2s...")
+                    print(f"Bar Detected ({dark_pixel_count} px). Waiting")
                     time.sleep(2) 
                     is_fishing = True
                 
@@ -72,7 +72,7 @@ def solve_minigame():
             
             else:
                 if is_fishing:
-                    print("<<< Bar Disappeared. Resetting.")
+                    print("Resetting.")
                     pyautogui.mouseUp() 
                     is_holding = False
                     is_fishing = False
