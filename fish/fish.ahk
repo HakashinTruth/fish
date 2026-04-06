@@ -1,8 +1,8 @@
-﻿SetBatchLines, -1
+SetBatchLines, -1
 CoordMode, Pixel, Screen
 CoordMode, Mouse, Screen
 
-; variables
+; --- SETTINGS ---
 toggle := false
 centerX := 960
 centerY := 530
@@ -23,7 +23,7 @@ if (toggle) {
 
 while (toggle)
 {
-    ; circular search
+    ; circle motion
     foundBobber := false
     Loop, 20 
     {
@@ -36,7 +36,7 @@ while (toggle)
 
         DllCall("SetCursorPos", "int", moveX, "int", moveY)
 
-        ; Scan for bobber in ocean
+        ; scan for red pixel
         PixelSearch, bx, by, 200, 125, 1820, 1000, 0xCD3124, 60, Fast RGB
         if (!ErrorLevel) 
         {
@@ -51,8 +51,8 @@ while (toggle)
     if (!foundBobber)
         continue
 
-    ; spam click until brown pixel apears at the cords
-    ToolTip, BOBBER SPOTTED, 10, 10
+    ; spam click until minigame
+    ToolTip, BOT: BOBBER SPOTTED! SPAMMING..., 10, 10
     minigameDetected := false
     startClickTime := A_TickCount
 
@@ -63,7 +63,7 @@ while (toggle)
             
         Click, %last_bx%, %last_by%
         
-        ; Check 1453, 800 for Brown pixel
+        ; check 1453, 800 for brown pixel
         PixelSearch, fx, fy, 1453, 800, 1453, 800, 0x5D4037, 60, Fast RGB
         if (!ErrorLevel) 
         {
@@ -84,14 +84,14 @@ while (toggle)
     if (!minigameDetected)
         continue
 
-    ; program stay idle during minigame
+    ; during minigame stay idle
     ToolTip, BOT: MINIGAME ACTIVE, 10, 10
     Loop
     {
         if (!toggle)
             break
 
-        ; Stay until brown pixel at 1453, 800 is gone
+        ; stay until brown pixel at 1453, 800 is gone
         PixelSearch, fx, fy, 1453, 800, 1453, 800, 0x5D4037, 60, Fast RGB
         if (ErrorLevel) 
             break 
@@ -99,13 +99,13 @@ while (toggle)
         Sleep, 400 
     }
 
-    ; loop sequence
+    ; recast sequence
     if (toggle)
     {
-        ToolTip, BOT: WAITING , 10, 10
+        ToolTip, BOT: WAITING 2s, 10, 10
         Sleep, 2000 
         
-        ; First Position: 1040, 620 , for any errors during after minigame, if fish fails it wil close the popup
+        ; first : 1040, 620 (3 times)
         Click, 1040, 620
         Sleep, 1000 
         Click, 1040, 620
@@ -113,7 +113,7 @@ while (toggle)
         Click, 1040, 620
         Sleep, 1000 ; Gap before next position
         
-        ; Second Position: 1400, 620 (2 times)
+        ; second : 1400, 620 (2 times)
         Click, 1400, 620
         Sleep, 1000 
         Click, 1400, 620
