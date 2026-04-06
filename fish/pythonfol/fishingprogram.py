@@ -13,8 +13,8 @@ is_holding = False
 is_fishing = False 
 
 print("DETECT  FISH")
-print("Status: looking for Minigame Bar...")
-print(" ']' to EXIT.")
+print("looking for Bar")
+print(" press ']' to EXIT.")
 
 def solve_minigame():
     global is_holding, is_fishing
