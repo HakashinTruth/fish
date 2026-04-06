@@ -1,0 +1,1 @@
+this programs while running wild detect the minigame and start doing it when ever the minigame is present
